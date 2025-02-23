@@ -1,0 +1,9 @@
+xinput list
+
+
+xinput list-props <device-id>
+xinput list-props 11
+
+
+xinput set-prop <device-id> <property-id> <value>
+xinput set-prop 11 367 10
