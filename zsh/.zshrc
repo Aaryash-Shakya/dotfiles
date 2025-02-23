@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # KEY | TOKEN | SECRETS are stored seperately and sourced only if the file exists
 [ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
