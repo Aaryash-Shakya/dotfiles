@@ -1,42 +1,108 @@
-# $HOME/.config/alacritty/alacritty.toml
-# by Rito Ghosh 2023-10-06
 
-# Alacritty now uses TOML formatting for its config files.
-# This is a simple example.
+[bell]
+animation = "EaseOutExpo"
+duration = 0
 
-# There are the specification here: https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
-# It is not obvious how it translates to TOML. But it is extremely straightforward.
+[colors]
+draw_bold_text_with_bright_colors = true
 
-# example: WINDOW, COLORS, etc. are tables, and should be represented as [window], [colors], respectively.
-# specifics of variables go under them. e.g.- look under "dynamic_padding" under-
-# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd#window
-# write `dynamic_padding = true` (without backticks -`) under the table [window]
-# for variables with multiple values, use "dotted keys". Like setting `padding.x = 5` under [window].
-# This is simple. If not clear, do several trials and errors.
+[[colors.indexed_colors]]
+color = "0xF8BD96"
+index = 16
 
-# Below is my initial set-up. The TOML homepage (https://toml.io/en/v1.0.0) was very helpful in figuring this out. 
-# I put the file alacritty.toml in $HOME/.config/alacritty. However it can be kept anywhere among the places mentioned in
-# https://github.com/alacritty/alacritty/tree/master#configuration
+[[colors.indexed_colors]]
+color = "0xF5E0DC"
+index = 17
 
-[window]
+[colors.bright]
+black = "0x988BA2"
+blue = "0x96CDFB"
+cyan = "0x89DCEB"
+green = "0xABE9B3"
+magenta = "0xF5C2E7"
+red = "0xF28FAD"
+white = "0xD9E0EE"
+yellow = "0xFAE3B0"
 
-opacity = 0.9
+[colors.cursor]
+cursor = "0xF5E0DC"
+text = "0x1E1D2F"
 
-padding.x = 10
-padding.y = 0
+[colors.normal]
+black = "0x6E6C7E"
+blue = "0x96CDFB"
+cyan = "0x89DCEB"
+green = "0xABE9B3"
+magenta = "0xF5C2E7"
+red = "0xF28FAD"
+white = "0xD9E0EE"
+yellow = "0xFAE3B0"
 
-decorations = "Full"
-decorations_theme_variant = "Light" # "Dark"
+[colors.primary]
+background = "0x1E1D2F"
+foreground = "0xD9E0EE"
+
+[cursor]
+blink_interval = 500
+blink_timeout = 5
+unfocused_hollow = false
+
+[cursor.style]
+blinking = "Off"
+shape = "Block"
+
+[env]
+TERM = "xterm-256color"
 
 [font]
+size = 12
 
-normal.family = "MesloLGS Nerd Font"
-bold.family = "MesloLGS Nerd Font"
-italic.family = "MesloLGS Nerd Font"
-bold_italic.family = "MesloLGS Nerd Font"
+[font.bold]
+family = "MesloLGM Nerd Font"
+style = "Bold"
 
-size = 8.0
+[font.glyph_offset]
+x = 0
+y = 0
 
-# Tip: for inspiration, look for values in the source code files of your favorite VS Code themes, and use the color picker in
-# Google to test colors before setting a value, or simply using an editor such as VS Code where colors are displayed in a 
-# small box when a HEX is detected by the editor.
+[font.italic]
+family = "MesloLGM Nerd Font"
+
+[font.normal]
+family = "MesloLGM Nerd Font"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[mouse]
+hide_when_typing = true
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[terminal.shell]
+program = "/usr/bin/zsh"
+
+[window]
+decorations = "full"
+dynamic_title = true
+startup_mode = "Maximized"
+
+[window.dimensions]
+columns = 160
+lines = 80
+
+[window.padding]
+x = 4
+y = 4
+
+[general]
+live_config_reload = true
+
+[terminal]
