@@ -16,7 +16,8 @@
     "context": "Editor",
     "bindings": {
       "shift-alt-up": "editor::DuplicateLineUp",
-      "shift-alt-down": "editor::DuplicateLineDown"
+      "shift-alt-down": "editor::DuplicateLineDown",
+      "shift-alt-f": "editor::Format",
       // "j k": ["workspace::SendKeystrokes", "escape"]
     }
   }
