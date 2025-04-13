@@ -7,12 +7,23 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "edit_predictions": {
+    "mode": "eager",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_assistant": false
+  },
   "theme": {
     "mode": "dark",
     "light": "Catppuccin Mocha (Blur)",
     "dark": "Catppuccin Mocha"
   },
-  "icon_theme": "Catppuccin Macchiato",
+  "icon_theme": "Catppuccin Latte",
   "ui_font_size": 16,
   "buffer_font_size": 16,
   // ===============================
@@ -28,5 +39,12 @@
   "formatter": "prettier",
   "editor.tab_width": 4,
   "editor.insert_spaces": true,
-  "editor.default_line_ending": "lf"
+  "editor.default_line_ending": "lf",
+  "context_servers": {
+    "postgres-context-server": {
+      "settings": {
+        "database_url": "postgresql://aaryash-f:(password)@localhost:5432/(dbname)"
+      }
+    }
+  }
 }
