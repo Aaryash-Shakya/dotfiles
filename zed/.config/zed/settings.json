@@ -40,6 +40,11 @@
   "editor.tab_width": 4,
   "editor.insert_spaces": true,
   "editor.default_line_ending": "lf",
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware",
+    "background_coloring": "indent_aware"
+  },
   "context_servers": {
     "postgres-context-server": {
       "settings": {
