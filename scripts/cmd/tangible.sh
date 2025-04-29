@@ -1,8 +1,20 @@
 #!/bin/bash
 
-# Open VS Code for frontend and backend
-code ~/Documents/arbyte/tangible-frontend &
+# Switch to workspace 2 (0-indexed)
+wmctrl -s 1
+
+# Open Zed for frontend on workspace 2
+zed ~/Documents/arbyte/tangible-frontend &
+
+# Open VS Code for backend on workspace 2
 code ~/Documents/arbyte/tangible-backend &
+
+# Switch to workspace 1 (0-indexed)
+wmctrl -s 0
+
+# Open Trello board and Google Doc in default browser
+xdg-open "https://trello.com/b/yfBaqSgB/tangible-sprint-board" &
+xdg-open "https://docs.google.com/document/d/1EWvFBQhYvF3KeONgSQ5rz27EGt7QWu68urqR26v7viw/edit?tab=t.dn6dq5dlf615#heading=h.cqulp7y5tzqy" &
 
 # Start a new tmux session named 'dev'
 tmux new-session -d -s dev
