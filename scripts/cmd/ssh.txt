@@ -1,2 +1,0 @@
-for tg-dev backend
-ssh -i arbyte-dev.pem ubuntu@54.179.93.16

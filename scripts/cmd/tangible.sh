@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Switch to workspace 2 (0-indexed)
-wmctrl -s 1
+# Switch to workspace 2 
+wtype -M meta -M shift -k 2 -m shift -m meta
 
 # Open Zed for frontend on workspace 2
 zed ~/Documents/arbyte/tangible-frontend &
@@ -9,12 +9,14 @@ zed ~/Documents/arbyte/tangible-frontend &
 # Open VS Code for backend on workspace 2
 code ~/Documents/arbyte/tangible-backend &
 
-# Switch to workspace 1 (0-indexed)
-wmctrl -s 0
+# Wait 1 second for the above programs to launch
+sleep 1
+# Switch to workspace 1 
+wtype -M meta -M shift -k 1 -m shift -m meta
 
-# Open Trello board and Google Doc in default browser
-xdg-open "https://trello.com/b/yfBaqSgB/tangible-sprint-board" &
-xdg-open "https://docs.google.com/document/d/1EWvFBQhYvF3KeONgSQ5rz27EGt7QWu68urqR26v7viw/edit?tab=t.dn6dq5dlf615#heading=h.cqulp7y5tzqy" &
+# Open Trello board and Google Doc in workspace 1
+xdg-open "https://trello.com/b/yfBaqSgB/tangible-sprint-board" >/dev/null 2>&1 &
+xdg-open "https://docs.google.com/document/d/1EWvFBQhYvF3KeONgSQ5rz27EGt7QWu68urqR26v7viw/edit?tab=t.dn6dq5dlf615#heading=h.cqulp7y5tzqy" >/dev/null 2>&1 &
 
 # Start a new tmux session named 'dev'
 tmux new-session -d -s dev
