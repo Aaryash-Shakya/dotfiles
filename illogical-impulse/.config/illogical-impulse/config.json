@@ -45,8 +45,8 @@
         "bottom": false,
         "cornerStyle": 0,
         "resources": {
-            "alwaysShowCpu": false,
-            "alwaysShowSwap": true
+            "alwaysShowCpu": true,
+            "alwaysShowSwap": false
         },
         "screenList": [
         ],
@@ -158,7 +158,7 @@
         }
     },
     "time": {
-        "dateFormat": "ddd, dd/MM",
+        "dateFormat": "ddd, MM/dd",
         "format": "h:mm AP"
     },
     "windows": {

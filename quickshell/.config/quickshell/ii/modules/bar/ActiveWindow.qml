@@ -42,9 +42,25 @@ Item {
             font.pixelSize: Appearance.font.pixelSize.small
             color: Appearance.colors.colOnLayer0
             elide: Text.ElideRight
-            text: root.focusingThisMonitor && root.activeWindow?.activated && root.biggestWindow ? 
-                root.activeWindow?.title :
-                (root.biggestWindow?.title) ?? `${qsTr("Workspace")} ${monitor.activeWorkspace?.id}`
+            text: {
+                if (root.focusingThisMonitor && root.activeWindow?.activated && root.biggestWindow) {
+                    var title = root.activeWindow?.title || "";
+                    // Remove application name from the end (like " - Visual Studio Code")
+                    var parts = title.split(" - ");
+                    if (parts.length > 1) {
+                        // Keep all parts except the last one (which is usually the app name)
+                        return parts.slice(0, -1).join(" - ");
+                    }
+                    return title;
+                } else {
+                    var fallbackTitle = root.biggestWindow?.title || `${qsTr("Workspace")} ${monitor.activeWorkspace?.id}`;
+                    var parts = fallbackTitle.split(" - ");
+                    if (parts.length > 1) {
+                        return parts.slice(0, -1).join(" - ");
+                    }
+                    return fallbackTitle;
+                }
+            }
         }
 
     }
