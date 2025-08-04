@@ -13,7 +13,8 @@ Item {
 
     RowLayout {
         id: rowLayout
-        anchors.centerIn: parent
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
         spacing: 4
 
         StyledText {

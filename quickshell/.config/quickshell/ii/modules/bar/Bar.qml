@@ -178,7 +178,7 @@ Scope {
                             RowLayout { // Content
                                 id: leftSectionRowLayout
                                 anchors.fill: parent
-                                spacing: 10
+                                spacing: 4
 
                                 RippleButton {
                                     // Left sidebar button
@@ -213,14 +213,15 @@ Scope {
                                         color: Appearance.colors.colOnLayer0
                                     }
                                 }
-
-                                ActiveWindow {
+                                ClockWidget {
                                     visible: barRoot.useShortenedForm === 0
+                                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+                                    showDate: Config.options.bar.verbose
                                     Layout.rightMargin: Appearance.rounding.screenRounding
                                     Layout.fillWidth: true
                                     Layout.fillHeight: true
-                                    bar: barRoot
                                 }
+
                             }
                         }
                     }
@@ -281,7 +282,6 @@ Scope {
                             id: rightCenterGroup
                             implicitWidth: rightCenterGroupContent.implicitWidth
                             implicitHeight: rightCenterGroupContent.implicitHeight
-                            Layout.preferredWidth: barRoot.centerSideModuleWidth
                             Layout.fillHeight: true
 
                             onPressed: {
@@ -291,12 +291,6 @@ Scope {
                             BarGroup {
                                 id: rightCenterGroupContent
                                 anchors.fill: parent
-
-                                ClockWidget {
-                                    showDate: (Config.options.bar.verbose && barRoot.useShortenedForm < 2)
-                                    Layout.alignment: Qt.AlignVCenter
-                                    Layout.fillWidth: true
-                                }
 
                                 UtilButtons {
                                     visible: (Config.options.bar.verbose && barRoot.useShortenedForm === 0)
