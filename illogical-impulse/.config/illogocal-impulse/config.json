@@ -54,7 +54,7 @@
             "workspaceZoom": 1.07
         },
         "thumbnailPath": "",
-        "wallpaperPath": ""
+        "wallpaperPath": "/home/aaryash/Pictures/Wallpapers/lamborghini-3840x2160-23530.jpg"
     },
     "bar": {
         "borderless": true,
@@ -66,7 +66,7 @@
         },
         "screenList": [
         ],
-        "showBackground": false,
+        "showBackground": true,
         "topLeftIcon": "spark",
         "tray": {
             "monochromeIcons": false
@@ -81,9 +81,9 @@
         },
         "verbose": true,
         "weather": {
-            "city": "",
-            "enable": false,
-            "enableGPS": true,
+            "city": "Kathmandu",
+            "enable": true,
+            "enableGPS": false,
             "fetchInterval": 10,
             "useUSCS": false
         },
