@@ -1,6 +1,6 @@
-import "root:/modules/common"
-import "root:/modules/common/widgets"
-import "root:/services"
+import qs.modules.common
+import qs.modules.common.widgets
+import qs.services
 import QtQuick
 import QtQuick.Layouts
 
@@ -13,8 +13,7 @@ Item {
 
     RowLayout {
         id: rowLayout
-        anchors.left: parent.left
-        anchors.verticalCenter: parent.verticalCenter
+        anchors.centerIn: parent
         spacing: 4
 
         StyledText {

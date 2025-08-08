@@ -1,11 +1,11 @@
-import "root:/modules/common"
-import "root:/modules/common/widgets"
-import "root:/services"
-import "root:/modules/common/functions/string_utils.js" as StringUtils
+import qs.modules.common
+import qs.modules.common.widgets
+import qs.services
+import qs
+import qs.modules.common.functions
+
 import QtQuick
 import QtQuick.Layouts
-import Quickshell
-import Quickshell.Io
 import Quickshell.Services.Mpris
 import Quickshell.Hyprland
 
@@ -13,7 +13,7 @@ Item {
     id: root
     property bool borderless: Config.options.bar.borderless
     readonly property MprisPlayer activePlayer: MprisController.activePlayer
-    readonly property string cleanedTitle: StringUtils.cleanMusicTitle(activePlayer?.trackTitle) || qsTr("No media")
+    readonly property string cleanedTitle: StringUtils.cleanMusicTitle(activePlayer?.trackTitle) || Translation.tr("No media")
 
     Layout.fillHeight: true
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
@@ -37,7 +37,7 @@ Item {
             } else if (event.button === Qt.ForwardButton || event.button === Qt.RightButton) {
                 activePlayer.next();
             } else if (event.button === Qt.LeftButton) {
-                Hyprland.dispatch("global quickshell:mediaControlsToggle")
+                GlobalStates.mediaControlsOpen = !GlobalStates.mediaControlsOpen
             }
         }
     }
@@ -53,9 +53,10 @@ Item {
             Layout.leftMargin: rowLayout.spacing
             lineWidth: 2
             value: activePlayer?.position / activePlayer?.length
-            size: 26
-            secondaryColor: Appearance.colors.colSecondaryContainer
-            primaryColor: Appearance.m3colors.m3onSecondaryContainer
+            implicitSize: 26
+            colSecondary: Appearance.colors.colSecondaryContainer
+            colPrimary: Appearance.m3colors.m3onSecondaryContainer
+            enableAnimation: false
 
             MaterialSymbol {
                 anchors.centerIn: parent

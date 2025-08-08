@@ -1,7 +1,7 @@
-import "root:/"
-import "root:/services"
-import "root:/modules/common"
-import "root:/modules/common/widgets"
+import qs
+import qs.services
+import qs.modules.common
+import qs.modules.common.widgets
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Effects
@@ -23,6 +23,7 @@ Scope { // Scope
             required property var modelData
             id: dockRoot
             screen: modelData
+            visible: !GlobalStates.screenLocked
             
             property bool reveal: root.pinned 
                 || (Config.options?.dock.hoverToReveal && dockMouseArea.containsMouse) 
@@ -93,7 +94,7 @@ Scope { // Scope
                             anchors.bottomMargin: Appearance.sizes.hyprlandGapsOut
                             color: Appearance.colors.colLayer0
                             border.width: 1
-                            border.color: Appearance.m3colors.m3outlineVariant
+                            border.color: Appearance.colors.colLayer0Border
                             radius: Appearance.rounding.large
                         }
 
@@ -128,7 +129,7 @@ Scope { // Scope
                             DockSeparator {}
                             DockButton {
                                 Layout.fillHeight: true
-                                onClicked: Hyprland.dispatch("global quickshell:overviewToggle")
+                                onClicked: GlobalStates.overviewOpen = !GlobalStates.overviewOpen
                                 contentItem: MaterialSymbol {
                                     anchors.fill: parent
                                     horizontalAlignment: Text.AlignHCenter

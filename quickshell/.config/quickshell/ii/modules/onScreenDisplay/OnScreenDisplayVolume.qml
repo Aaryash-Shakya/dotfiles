@@ -1,6 +1,7 @@
-import "root:/services/"
-import "root:/modules/common"
-import "root:/modules/common/widgets"
+import qs
+import qs.services
+import qs.modules.common
+import qs.modules.common.widgets
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -11,12 +12,11 @@ import Quickshell.Hyprland
 
 Scope {
     id: root
-    property bool showOsdValues: false
     property string protectionMessage: ""
     property var focusedScreen: Quickshell.screens.find(s => s.name === Hyprland.focusedMonitor?.name)
 
     function triggerOsd() {
-        showOsdValues = true
+        GlobalStates.osdVolumeOpen = true
         osdTimeout.restart()
     }
 
@@ -26,7 +26,7 @@ Scope {
         repeat: false
         running: false
         onTriggered: {
-            root.showOsdValues = false
+            GlobalStates.osdVolumeOpen = false
             root.protectionMessage = ""
         }
     }
@@ -34,7 +34,7 @@ Scope {
     Connections {
         target: Brightness
         function onBrightnessChanged() {
-            showOsdValues = false
+            GlobalStates.osdVolumeOpen = false
         }
     }
 
@@ -60,7 +60,7 @@ Scope {
 
     Loader {
         id: osdLoader
-        active: showOsdValues
+        active: GlobalStates.osdVolumeOpen
 
         sourceComponent: PanelWindow {
             id: osdRoot
@@ -102,7 +102,7 @@ Scope {
                     MouseArea {
                         anchors.fill: parent
                         hoverEnabled: true
-                        onEntered: root.showOsdValues = false
+                        onEntered: GlobalStates.osdVolumeOpen = false
                     }
 
                     ColumnLayout {
@@ -121,7 +121,7 @@ Scope {
                             Layout.fillWidth: true
                             value: Audio.sink?.audio.volume ?? 0
                             icon: Audio.sink?.audio.muted ? "volume_off" : "volume_up"
-                            name: qsTr("Volume")
+                            name: Translation.tr("Volume")
                         }
 
                         Item {
@@ -176,16 +176,16 @@ Scope {
         }
 
         function hide() {
-            showOsdValues = false
+            GlobalStates.osdVolumeOpen = false
         }
 
         function toggle() {
-            showOsdValues = !showOsdValues
+            GlobalStates.osdVolumeOpen = !GlobalStates.osdVolumeOpen
         }
 	}
     GlobalShortcut {
         name: "osdVolumeTrigger"
-        description: qsTr("Triggers volume OSD on press")
+        description: "Triggers volume OSD on press"
 
         onPressed: {
             root.triggerOsd()
@@ -193,10 +193,10 @@ Scope {
     }
     GlobalShortcut {
         name: "osdVolumeHide"
-        description: qsTr("Hides volume OSD on press")
+        description: "Hides volume OSD on press"
 
         onPressed: {
-            root.showOsdValues = false
+            GlobalStates.osdVolumeOpen = false
         }
     }
 

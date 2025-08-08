@@ -1,5 +1,5 @@
-import "root:/modules/common/"
-import "root:/modules/common/functions/color_utils.js" as ColorUtils
+import qs.modules.common
+import qs.modules.common.functions
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -10,7 +10,7 @@ import Qt5Compat.GraphicalEffects
 MouseArea {
     id: root
 
-    required property var bar
+    property var bar: root.QsWindow.window
     required property SystemTrayItem item
     property bool targetMenuOpen: false
     property int trayItemWidth: Appearance.font.pixelSize.larger
@@ -59,12 +59,12 @@ MouseArea {
                 visible: false // There's already color overlay
                 anchors.fill: parent
                 source: trayIcon
-                desaturation: 1 // 1.0 means fully grayscale
+                desaturation: 0.8 // 1.0 means fully grayscale
             }
             ColorOverlay {
                 anchors.fill: desaturatedIcon
                 source: desaturatedIcon
-                color: ColorUtils.transparentize(Appearance.colors.colOnLayer0, 0.6)
+                color: ColorUtils.transparentize(Appearance.colors.colOnLayer0, 0.9)
             }
         }
     }

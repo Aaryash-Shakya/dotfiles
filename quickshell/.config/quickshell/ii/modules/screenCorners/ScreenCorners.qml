@@ -1,5 +1,5 @@
-import "root:/modules/common"
-import "root:/modules/common/widgets"
+import qs.modules.common
+import qs.modules.common.widgets
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
@@ -35,7 +35,7 @@ Scope {
         implicitHeight: cornerWidget.implicitHeight
         RoundCorner {
             id: cornerWidget
-            size: Appearance.rounding.screenRounding
+            implicitSize: Appearance.rounding.screenRounding
             corner: cornerPanelWindow.corner
         }
     }

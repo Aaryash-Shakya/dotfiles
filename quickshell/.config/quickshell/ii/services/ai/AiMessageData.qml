@@ -1,4 +1,3 @@
-import "root:/modules/common"
 import QtQuick;
 
 /**
@@ -13,8 +12,10 @@ QtObject {
     property bool done: false
     property var annotations: []
     property var annotationSources: []
+    property list<string> searchQueries: []
     property string functionName
-    property string functionCall
+    property var functionCall
     property string functionResponse
+    property bool functionPending: false
     property bool visibleToUser: true
 }

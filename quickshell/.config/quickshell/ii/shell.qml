@@ -1,15 +1,18 @@
 //@ pragma UseQApplication
 //@ pragma Env QS_NO_RELOAD_POPUP=1
 //@ pragma Env QT_QUICK_CONTROLS_STYLE=Basic
+//@ pragma Env QT_QUICK_FLICKABLE_WHEEL_DECELERATION=10000
 
 // Adjust this to make the shell smaller or larger
 //@ pragma Env QT_SCALE_FACTOR=1
+
 
 import "./modules/common/"
 import "./modules/background/"
 import "./modules/bar/"
 import "./modules/cheatsheet/"
 import "./modules/dock/"
+import "./modules/lock/"
 import "./modules/mediaControls/"
 import "./modules/notificationPopup/"
 import "./modules/onScreenDisplay/"
@@ -19,9 +22,8 @@ import "./modules/screenCorners/"
 import "./modules/session/"
 import "./modules/sidebarLeft/"
 import "./modules/sidebarRight/"
+
 import QtQuick
-import QtQuick.Controls
-import QtQuick.Layouts
 import QtQuick.Window
 import Quickshell
 import "./services/"
@@ -33,6 +35,7 @@ ShellRoot {
     property bool enableBackground: true
     property bool enableCheatsheet: true
     property bool enableDock: true
+    property bool enableLock: true
     property bool enableMediaControls: true
     property bool enableNotificationPopup: true
     property bool enableOnScreenDisplayBrightness: true
@@ -47,15 +50,17 @@ ShellRoot {
 
     // Force initialization of some singletons
     Component.onCompleted: {
-        MaterialThemeLoader.reapplyTheme()
         Cliphist.refresh()
         FirstRunExperience.load()
+        Hyprsunset.load()
+        MaterialThemeLoader.reapplyTheme()
     }
 
     LazyLoader { active: enableBar; component: Bar {} }
     LazyLoader { active: enableBackground; component: Background {} }
     LazyLoader { active: enableCheatsheet; component: Cheatsheet {} }
     LazyLoader { active: enableDock && Config.options.dock.enable; component: Dock {} }
+    LazyLoader { active: enableLock; component: Lock {} }
     LazyLoader { active: enableMediaControls; component: MediaControls {} }
     LazyLoader { active: enableNotificationPopup; component: NotificationPopup {} }
     LazyLoader { active: enableOnScreenDisplayBrightness; component: OnScreenDisplayBrightness {} }

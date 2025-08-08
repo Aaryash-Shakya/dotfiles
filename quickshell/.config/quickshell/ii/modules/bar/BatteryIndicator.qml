@@ -1,11 +1,8 @@
-import "root:/modules/common"
-import "root:/modules/common/widgets"
-import "root:/services"
+import qs.modules.common
+import qs.modules.common.widgets
+import qs.services
 import QtQuick
 import QtQuick.Layouts
-import Quickshell
-import Quickshell.Io
-import Quickshell.Services.UPower
 
 Item {
     id: root
@@ -15,23 +12,8 @@ Item {
     readonly property bool isPluggedIn: Battery.isPluggedIn
     readonly property real percentage: Battery.percentage
     readonly property bool isLow: percentage <= Config.options.battery.low / 100
-    readonly property bool isFull: percentage >= 1.0 // 100%
     readonly property color batteryLowBackground: Appearance.m3colors.darkmode ? Appearance.m3colors.m3error : Appearance.m3colors.m3errorContainer
     readonly property color batteryLowOnBackground: Appearance.m3colors.darkmode ? Appearance.m3colors.m3errorContainer : Appearance.m3colors.m3error
-    
-    // Dynamic colors based on battery state
-    readonly property color batteryColor: {
-        if (isFull) return "#2196F3" // Blue at 100%
-        if (isCharging) return "#4CAF50" // Green when charging
-        if (isLow) return "#F44336" // Red below 20%
-        return Appearance.colors.colOnLayer1 // Default color
-    }
-    readonly property color batteryBackgroundColor: {
-        if (isFull) return "#BBDEFB" // Light blue background at 100%
-        if (isCharging) return "#C8E6C9" // Light green background when charging
-        if (isLow) return batteryLowBackground // Red background below 20%
-        return Appearance.colors.colSecondaryContainer // Default background
-    }
 
     implicitWidth: rowLayout.implicitWidth + rowLayout.spacing * 2
     implicitHeight: 32
@@ -52,25 +34,26 @@ Item {
 
         StyledText {
             Layout.alignment: Qt.AlignVCenter
-            color: batteryColor
+            color: Appearance.colors.colOnLayer1
             text: `${Math.round(percentage * 100)}`
         }
 
         CircularProgress {
+            enableAnimation: false
             Layout.alignment: Qt.AlignVCenter
             lineWidth: 2
             value: percentage
-            size: 26
-            secondaryColor: batteryBackgroundColor
-            primaryColor: batteryColor
-            fill: (isLow && !isCharging) || isCharging || isFull
+            implicitSize: 26
+            colSecondary: (isLow && !isCharging) ? batteryLowBackground : Appearance.colors.colSecondaryContainer
+            colPrimary: (isLow && !isCharging) ? batteryLowOnBackground : Appearance.m3colors.m3onSecondaryContainer
+            fill: (isLow && !isCharging)
 
             MaterialSymbol {
                 anchors.centerIn: parent
                 fill: 1
                 text: "battery_full"
                 iconSize: Appearance.font.pixelSize.normal
-                color: batteryColor
+                color: (isLow && !isCharging) ? batteryLowOnBackground : Appearance.m3colors.m3onSecondaryContainer
             }
 
         }
@@ -95,7 +78,7 @@ Item {
 
             text: "bolt"
             iconSize: Appearance.font.pixelSize.large
-            color: batteryColor
+            color: Appearance.m3colors.m3onSecondaryContainer
             visible: opacity > 0 // Only show when charging
             opacity: isCharging ? 1 : 0 // Keep opacity for visibility
             onVisibleChanged: {

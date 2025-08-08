@@ -1,9 +1,7 @@
-import "root:/modules/common"
-import "root:/modules/common/widgets"
+import qs.modules.common
+import qs.modules.common.widgets
 import QtQuick
 import QtQuick.Layouts
-import Quickshell
-import Quickshell.Io
 
 Item {
     required property string iconName
@@ -23,9 +21,10 @@ Item {
             Layout.alignment: Qt.AlignVCenter
             lineWidth: 2
             value: percentage
-            size: 26
-            secondaryColor: Appearance.colors.colSecondaryContainer
-            primaryColor: Appearance.m3colors.m3onSecondaryContainer
+            implicitSize: 26
+            colSecondary: Appearance.colors.colSecondaryContainer
+            colPrimary: Appearance.m3colors.m3onSecondaryContainer
+            enableAnimation: false
 
             MaterialSymbol {
                 anchors.centerIn: parent

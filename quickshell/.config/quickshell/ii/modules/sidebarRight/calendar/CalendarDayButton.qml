@@ -1,8 +1,6 @@
-import "root:/modules/common"
-import "root:/modules/common/widgets"
-import "root:/modules/common/functions/color_utils.js" as ColorUtils
+import qs.modules.common
+import qs.modules.common.widgets
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 
 RippleButton {
@@ -25,7 +23,6 @@ RippleButton {
         horizontalAlignment: Text.AlignHCenter
         font.weight: bold ? Font.DemiBold : Font.Normal
         color: (isToday == 1) ? Appearance.m3colors.m3onPrimary : 
-            (isToday == 2) ? Appearance.m3colors.m3error :  // Weekend days - red
             (isToday == 0) ? Appearance.colors.colOnLayer1 : 
             Appearance.colors.colOutlineVariant
 
