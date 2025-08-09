@@ -152,12 +152,13 @@ Item { // Bar content region
                         color: Appearance.colors.colOnLayer0
                     }
                 }
-
-                ActiveWindow {
-                    visible: root.useShortenedForm === 0
-                    Layout.rightMargin: Appearance.rounding.screenRounding
+                
+                ClockWidget {
+                    showDate: (Config.options.bar.verbose && root.useShortenedForm < 2)
+                    Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                     Layout.fillWidth: true
                     Layout.fillHeight: true
+                    Layout.rightMargin: Appearance.rounding.screenRounding
                 }
             }
         }
@@ -218,7 +219,6 @@ Item { // Bar content region
             id: rightCenterGroup
             implicitWidth: rightCenterGroupContent.implicitWidth
             implicitHeight: rightCenterGroupContent.implicitHeight
-            Layout.preferredWidth: root.centerSideModuleWidth
             Layout.fillHeight: true
 
             onPressed: {
@@ -228,12 +228,6 @@ Item { // Bar content region
             BarGroup {
                 id: rightCenterGroupContent
                 anchors.fill: parent
-
-                ClockWidget {
-                    showDate: (Config.options.bar.verbose && root.useShortenedForm < 2)
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.fillWidth: true
-                }
 
                 UtilButtons {
                     visible: (Config.options.bar.verbose && root.useShortenedForm === 0)
