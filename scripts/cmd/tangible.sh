@@ -4,7 +4,7 @@
 # zed ~/Documents/arbyte/tangible-frontend &
 
 # Open VS Code for backend on workspace 2
-code ~/Documents/arbyte/tangible-backend &
+code --disable-gpu --ozone-platform=x11 ~/Documents/arbyte/tangible-backend &
 
 # Open Trello board and Google Doc in workspace 1
 #xdg-open "https://trello.com/b/yfBaqSgB/tangible-sprint-board" >/dev/null 2>&1 &
