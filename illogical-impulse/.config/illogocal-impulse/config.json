@@ -23,11 +23,21 @@
         "palette": {
             "type": "scheme-content"
         },
-        "transparency": true,
+        "transparency": {
+            "automatic": true,
+            "backgroundTransparency": 0.11,
+            "contentTransparency": 0.57,
+            "enable": false
+        },
         "wallpaperTheming": {
             "enableAppsAndShell": true,
             "enableQtApps": true,
-            "enableTerminal": true
+            "enableTerminal": true,
+            "terminalGenerationProps": {
+                "harmonizeThreshold": 100,
+                "harmony": 0.8,
+                "termFgBoost": 0.35
+            }
         }
     },
     "apps": {
@@ -48,28 +58,48 @@
         "clockX": -500,
         "clockY": -500,
         "fixedClockPosition": false,
+        "hideWhenFullscreen": true,
         "parallax": {
+            "autoVertical": false,
             "enableSidebar": false,
             "enableWorkspace": false,
+            "vertical": false,
             "workspaceZoom": 1.07
         },
+        "quote": "Do HARD Things!!!",
+        "showClock": true,
         "thumbnailPath": "",
         "wallpaperPath": "/home/aaryash/Pictures/Wallpapers/lamborghini-3840x2160-23530.jpg"
     },
     "bar": {
+        "autoHide": {
+            "enable": false,
+            "pushWindows": false,
+            "showWhenPressingSuper": {
+                "delay": 140,
+                "enable": true
+            }
+        },
         "borderless": true,
         "bottom": false,
-        "cornerStyle": 1,
+        "cornerStyle": 0,
         "resources": {
             "alwaysShowCpu": false,
-            "alwaysShowSwap": true
+            "alwaysShowSwap": true,
+            "cpuWarningThreshold": 90,
+            "memoryWarningThreshold": 95,
+            "swapWarningThreshold": 85
         },
         "screenList": [
         ],
         "showBackground": true,
         "topLeftIcon": "spark",
         "tray": {
-            "monochromeIcons": false
+            "invertPinnedItems": false,
+            "monochromeIcons": false,
+            "pinnedItems": [
+                "Fcitx"
+            ]
         },
         "utilButtons": {
             "showColorPicker": false,
@@ -80,6 +110,7 @@
             "showScreenSnip": true
         },
         "verbose": true,
+        "vertical": false,
         "weather": {
             "city": "Kathmandu",
             "enable": true,
@@ -90,16 +121,25 @@
         "workspaces": {
             "alwaysShowNumbers": false,
             "monochromeIcons": false,
+            "numberMap": [
+                "1",
+                "2"
+            ],
             "showAppIcons": true,
             "showNumberDelay": 300,
-            "shown": 6
+            "shown": 6,
+            "useNerdFont": false
         }
     },
     "battery": {
         "automaticSuspend": true,
-        "critical": 5,
+        "critical": 10,
         "low": 20,
-        "suspend": 3
+        "suspend": 8
+    },
+    "conflictKiller": {
+        "autoKillNotificationDaemons": true,
+        "autoKillTrays": false
     },
     "dock": {
         "enable": false,
@@ -118,12 +158,21 @@
     "hacks": {
         "arbitraryRaceConditionDelay": 20
     },
+    "interactions": {
+        "scrolling": {
+            "fasterTouchpadScroll": false,
+            "mouseScrollDeltaThreshold": 120,
+            "mouseScrollFactor": 120,
+            "touchpadScrollFactor": 450
+        }
+    },
     "language": {
         "translator": {
             "engine": "auto",
             "sourceLanguage": "auto",
             "targetLanguage": "auto"
-        }
+        },
+        "ui": "en_US"
     },
     "light": {
         "night": {
@@ -132,6 +181,9 @@
             "from": "19:00",
             "to": "06:30"
         }
+    },
+    "media": {
+        "filterDuplicatePlayers": true
     },
     "networking": {
         "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
@@ -151,7 +203,7 @@
     },
     "policies": {
         "ai": 1,
-        "weeb": 1
+        "weeb": 0
     },
     "resources": {
         "updateInterval": 3000
@@ -168,7 +220,11 @@
         "prefix": {
             "action": "/",
             "clipboard": ";",
-            "emojis": ":"
+            "emojis": ":",
+            "math": "=",
+            "shellCommand": "$",
+            "showDefaultActionsWithoutPrefix": true,
+            "webSearch": "?"
         },
         "sloppy": false
     },
@@ -181,6 +237,15 @@
                 "username": "[unset]"
             }
         },
+        "cornerOpen": {
+            "bottom": true,
+            "clickless": false,
+            "cornerRegionHeight": 2,
+            "cornerRegionWidth": 60,
+            "enable": true,
+            "valueScroll": true,
+            "visualize": false
+        },
         "keepRightSidebarLoaded": true,
         "translator": {
             "delay": 300
@@ -188,10 +253,18 @@
     },
     "time": {
         "dateFormat": "ddd, MM/dd",
-        "format": "h:mm AP"
+        "format": "h:mm AP",
+        "pomodoro": {
+            "alertSound": "",
+            "breakTime": 300,
+            "cyclesBeforeLongBreak": 4,
+            "focus": 1500,
+            "longBreak": 900
+        },
+        "shortDateFormat": "dd/MM"
     },
     "windows": {
         "centerTitle": true,
-        "showTitlebar": true
+        "showTitlebar": false
     }
 }
