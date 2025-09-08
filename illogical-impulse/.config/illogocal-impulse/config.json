@@ -42,14 +42,14 @@
     },
     "apps": {
         "bluetooth": "kcmshell6 kcm_bluetooth",
-        "network": "plasmawindowed org.kde.plasma.networkmanagement",
+        "network": "kitty -1 fish -c nmtui",
         "networkEthernet": "kcmshell6 kcm_networkmanagement",
         "taskManager": "plasma-systemmonitor --page-name Processes",
         "terminal": "kitty -1"
     },
     "audio": {
         "protection": {
-            "enable": true,
+            "enable": false,
             "maxAllowed": 100,
             "maxAllowedIncrease": 10
         }
@@ -80,11 +80,11 @@
                 "enable": true
             }
         },
-        "borderless": true,
+        "borderless": false,
         "bottom": false,
-        "cornerStyle": 0,
+        "cornerStyle": 2,
         "resources": {
-            "alwaysShowCpu": false,
+            "alwaysShowCpu": true,
             "alwaysShowSwap": true,
             "cpuWarningThreshold": 90,
             "memoryWarningThreshold": 95,
@@ -92,10 +92,10 @@
         },
         "screenList": [
         ],
-        "showBackground": true,
+        "showBackground": false,
         "topLeftIcon": "spark",
         "tray": {
-            "invertPinnedItems": false,
+            "invertPinnedItems": true,
             "monochromeIcons": false,
             "pinnedItems": [
                 "Fcitx"
@@ -112,9 +112,9 @@
         "verbose": true,
         "vertical": false,
         "weather": {
-            "city": "Kathmandu",
+            "city": "",
             "enable": true,
-            "enableGPS": false,
+            "enableGPS": true,
             "fetchInterval": 10,
             "useUSCS": false
         },
@@ -138,8 +138,8 @@
         "suspend": 8
     },
     "conflictKiller": {
-        "autoKillNotificationDaemons": true,
-        "autoKillTrays": false
+        "autoKillNotificationDaemons": false,
+        "autoKillTrays": true
     },
     "dock": {
         "enable": false,
@@ -172,7 +172,7 @@
             "sourceLanguage": "auto",
             "targetLanguage": "auto"
         },
-        "ui": "en_US"
+        "ui": "auto"
     },
     "light": {
         "night": {
@@ -252,8 +252,8 @@
         }
     },
     "time": {
-        "dateFormat": "ddd, MM/dd",
-        "format": "h:mm AP",
+        "dateFormat": "ddd, dd/MM",
+        "format": "hh:mm",
         "pomodoro": {
             "alertSound": "",
             "breakTime": 300,
@@ -265,6 +265,6 @@
     },
     "windows": {
         "centerTitle": true,
-        "showTitlebar": false
+        "showTitlebar": true
     }
 }
