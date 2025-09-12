@@ -88,11 +88,20 @@ Item { // Bar content region
                 colBackground: barLeftSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
             }
 
-            ActiveWindow {
-                visible: root.useShortenedForm === 0
-                Layout.rightMargin: Appearance.rounding.screenRounding
+            BarGroup {
+                Layout.alignment: Qt.AlignVCenter
+                Layout.fillWidth: false
+                padding: workspacesWidget.widgetPadding
+
+                ClockWidget {
+                    showDate: (Config.options.bar.verbose && root.useShortenedForm < 2)
+                    Layout.alignment: Qt.AlignVCenter
+                }
+            }
+
+            Item {
                 Layout.fillWidth: true
-                Layout.fillHeight: true
+                Layout.rightMargin: Appearance.rounding.screenRounding
             }
         }
     }
@@ -155,7 +164,7 @@ Item { // Bar content region
             id: rightCenterGroup
             implicitWidth: rightCenterGroupContent.implicitWidth
             implicitHeight: rightCenterGroupContent.implicitHeight
-            Layout.preferredWidth: root.centerSideModuleWidth
+            Layout.preferredWidth: rightCenterGroupContent.implicitWidth
 
             onPressed: {
                 GlobalStates.sidebarRightOpen = !GlobalStates.sidebarRightOpen;
@@ -165,15 +174,10 @@ Item { // Bar content region
                 id: rightCenterGroupContent
                 anchors.fill: parent
 
-                ClockWidget {
-                    showDate: (Config.options.bar.verbose && root.useShortenedForm < 2)
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.fillWidth: true
-                }
-
                 UtilButtons {
                     visible: (Config.options.bar.verbose && root.useShortenedForm === 0)
                     Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: false
                 }
 
                 BatteryIndicator {
