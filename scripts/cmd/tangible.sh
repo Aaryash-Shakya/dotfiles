@@ -6,28 +6,28 @@
 # Open VS Code for backend on workspace 2
 code --disable-gpu --ozone-platform=x11 ~/Documents/arbyte/tangible-backend &
 
-# Open Trello board and Google Doc in workspace 1
-#xdg-open "https://trello.com/b/yfBaqSgB/tangible-sprint-board" >/dev/null 2>&1 &
-#xdg-open "https://docs.google.com/document/d/1EWvFBQhYvF3KeONgSQ5rz27EGt7QWu68urqR26v7viw/edit?tab=t.dn6dq5dlf615#heading=h.cqulp7y5tzqy" >/dev/null 2>&1 &
-
-# Start a new tmux session named 'dev'
-tmux new-session -d -s dev
+# Start a new tmux session named 'tangible'
+tmux new-session -d -s tangible
 
 # Create first window named 'back' and split into two panes
 # Both panes will start in /home/aaryash/Documents/arbyte/tangible-backend
-tmux rename-window -t dev:1 back
-tmux send-keys -t dev:1 "cd /home/aaryash/Documents/arbyte/tangible-backend" C-m
-tmux send-keys -t dev:1 "yarn dev" C-m
-tmux split-window -h -t dev:1
-tmux send-keys -t dev:1.1 "cd /home/aaryash/Documents/arbyte/tangible-backend" C-m
+tmux rename-window -t tangible:1 back
+tmux send-keys -t tangible:1 "cd /home/aaryash/Documents/arbyte/tangible-backend" C-m
+tmux send-keys -t tangible:1 "yarn dev" C-m
+tmux split-window -h -t tangible:1
+tmux send-keys -t tangible:1.1 "cd /home/aaryash/Documents/arbyte/tangible-backend" C-m
 
 # Create second window named 'front' and split into two panes
 # Both panes will start in /home/aaryash/Documents/arbyte/tangible-frontend
-tmux new-window -t dev:2 -n front
-tmux send-keys -t dev:2 "cd /home/aaryash/Documents/arbyte/tangible-frontend" C-m
-tmux send-keys -t dev:2 "yarn dev" C-m
-tmux split-window -h -t dev:2
-tmux send-keys -t dev:2.1 "cd /home/aaryash/Documents/arbyte/tangible-frontend" C-m
+tmux new-window -t tangible:2 -n front
+tmux send-keys -t tangible:2 "cd /home/aaryash/Documents/arbyte/tangible-frontend" C-m
+tmux send-keys -t tangible:2 "yarn dev" C-m
+tmux split-window -h -t tangible:2
+tmux send-keys -t tangible:2.1 "cd /home/aaryash/Documents/arbyte/tangible-frontend" C-m
+
+# Create third window named 'pgcli'
+tmux new-window -t tangible:3 -n pgcli
+tmux send-keys -t tangible:3 "pgcli tangible" C-m
 
 # Attach to the session
-#tmux attach-session -t dev
+#tmux attach-session -t tangible
