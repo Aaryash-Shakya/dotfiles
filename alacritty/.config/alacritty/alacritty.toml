@@ -107,3 +107,8 @@ y = 12
 live_config_reload = true
 
 [terminal]
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
