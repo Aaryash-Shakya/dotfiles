@@ -19,7 +19,7 @@
     },
     "appearance": {
         "extraBackgroundTint": true,
-        "fakeScreenRounding": 2,
+        "fakeScreenRounding": 0,
         "palette": {
             "type": "scheme-content"
         },
@@ -34,6 +34,7 @@
             "enableQtApps": true,
             "enableTerminal": true,
             "terminalGenerationProps": {
+                "forceDarkMode": false,
                 "harmonizeThreshold": 100,
                 "harmony": 0.8,
                 "termFgBoost": 0.35
@@ -49,15 +50,20 @@
     },
     "audio": {
         "protection": {
-            "enable": false,
-            "maxAllowed": 100,
+            "enable": true,
+            "maxAllowed": 151,
             "maxAllowedIncrease": 10
         }
     },
     "background": {
-        "clockX": -500,
-        "clockY": -500,
-        "fixedClockPosition": false,
+        "clock": {
+            "fixedPosition": false,
+            "scale": 1,
+            "show": true,
+            "style": "digital",
+            "x": -500,
+            "y": -500
+        },
         "hideWhenFullscreen": true,
         "parallax": {
             "autoVertical": false,
@@ -66,14 +72,14 @@
             "vertical": false,
             "workspaceZoom": 1.07
         },
-        "quote": "Do HARD Things!!!",
-        "showClock": true,
+        "quote": "Nothing changes, if nothing changes.",
         "thumbnailPath": "",
         "wallpaperPath": "/home/aaryash/Pictures/Wallpapers/lamborghini-3840x2160-23530.jpg"
     },
     "bar": {
         "autoHide": {
             "enable": false,
+            "hoverRegionWidth": 2,
             "pushWindows": false,
             "showWhenPressingSuper": {
                 "delay": 140,
@@ -96,10 +102,11 @@
         "topLeftIcon": "spark",
         "tray": {
             "invertPinnedItems": true,
-            "monochromeIcons": false,
+            "monochromeIcons": true,
             "pinnedItems": [
                 "Fcitx"
-            ]
+            ],
+            "showItemId": false
         },
         "utilButtons": {
             "showColorPicker": false,
@@ -112,9 +119,9 @@
         "verbose": true,
         "vertical": false,
         "weather": {
-            "city": "",
+            "city": "Kathmandu",
             "enable": true,
-            "enableGPS": true,
+            "enableGPS": false,
             "fetchInterval": 10,
             "useUSCS": false
         },
@@ -138,8 +145,11 @@
         "suspend": 8
     },
     "conflictKiller": {
-        "autoKillNotificationDaemons": false,
+        "autoKillNotificationDaemons": true,
         "autoKillTrays": true
+    },
+    "crosshair": {
+        "code": "0;P;d;1;0l;10;0o;2;1b;0"
     },
     "dock": {
         "enable": false,
@@ -159,6 +169,9 @@
         "arbitraryRaceConditionDelay": 20
     },
     "interactions": {
+        "deadPixelWorkaround": {
+            "enable": true
+        },
         "scrolling": {
             "fasterTouchpadScroll": false,
             "mouseScrollDeltaThreshold": 120,
@@ -176,17 +189,34 @@
     },
     "light": {
         "night": {
-            "automatic": true,
+            "automatic": false,
             "colorTemperature": 5000,
             "from": "19:00",
             "to": "06:30"
         }
+    },
+    "lock": {
+        "blur": {
+            "enable": false,
+            "extraZoom": 1.1,
+            "radius": 100
+        },
+        "centerClock": true,
+        "launchOnStartup": false,
+        "security": {
+            "requirePasswordToPower": false,
+            "unlockKeyring": true
+        },
+        "showLockedText": true
     },
     "media": {
         "filterDuplicatePlayers": true
     },
     "networking": {
         "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36"
+    },
+    "notifications": {
+        "timeout": 7000
     },
     "osd": {
         "timeout": 1000
@@ -253,7 +283,7 @@
     },
     "time": {
         "dateFormat": "ddd, dd/MM",
-        "format": "hh:mm",
+        "format": "h:mm AP",
         "pomodoro": {
             "alertSound": "",
             "breakTime": 300,
@@ -263,8 +293,54 @@
         },
         "shortDateFormat": "dd/MM"
     },
+    "wallpaperSelector": {
+        "useSystemFileDialog": false
+    },
     "windows": {
         "centerTitle": true,
         "showTitlebar": true
+    },
+    "workSafety": {
+        "enable": {
+            "clipboard": true,
+            "wallpaper": true
+        },
+        "triggerCondition": {
+            "fileKeywords": [
+                "anime",
+                "ecchi",
+                "hentai",
+                "yande.re",
+                "konachan",
+                "breast",
+                "nipples",
+                "pussy",
+                "nsfw",
+                "spoiler",
+                "girl"
+            ],
+            "linkKeywords": [
+                "hentai",
+                "porn",
+                "sukebei",
+                "hitomi.la",
+                "rule34",
+                "gelbooru",
+                "fanbox",
+                "dlsite"
+            ],
+            "networkNameKeywords": [
+                "airport",
+                "cafe",
+                "college",
+                "company",
+                "eduroam",
+                "free",
+                "guest",
+                "public",
+                "school",
+                "university"
+            ]
+        }
     }
 }
