@@ -4,7 +4,7 @@
 # zed ~/Documents/arbyte/tangible-frontend &
 
 # Open VS Code for backend on workspace 2
-code --disable-gpu --ozone-platform=x11 ~/Documents/arbyte/tangible-backend &
+zeditor ~/Documents/arbyte/tangible-backend &
 
 # Start a new tmux session named 'tangible'
 tmux new-session -d -s tangible
@@ -26,7 +26,7 @@ tmux split-window -h -t tangible:2
 tmux send-keys -t tangible:2.1 "cd /home/aaryash/Documents/arbyte/tangible-frontend" C-m
 
 # Create third window named 'pgcli'
-tmux new-window -t tangible:3 -n pgcli
+# tmux new-window -t tangible:3 -n pgcli
 tmux send-keys -t tangible:3 "pgcli tangible" C-m
 
 # Attach to the session
