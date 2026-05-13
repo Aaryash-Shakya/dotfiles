@@ -79,8 +79,7 @@ Item { // Bar content region
 
         RowLayout {
             id: leftSectionRowLayout
-            anchors.left: parent.left
-            anchors.verticalCenter: parent.verticalCenter
+            anchors.fill: parent
             spacing: 0
 
             LeftSidebarButton { // Left sidebar button
@@ -90,10 +89,11 @@ Item { // Bar content region
                 colBackground: barLeftSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
             }
 
-            ClockWidget {
-                showDate: true
-                Layout.leftMargin: 10
-                Layout.alignment: Qt.AlignVCenter
+            ActiveWindow {
+                Layout.leftMargin: 10 + (leftSidebarButton.visible ? 0 : Appearance.rounding.screenRounding)
+                Layout.rightMargin: Appearance.rounding.screenRounding
+                Layout.fillWidth: true
+                Layout.fillHeight: true
                 visible: root.useShortenedForm === 0
             }
         }
@@ -167,6 +167,12 @@ Item { // Bar content region
             BarGroup {
                 id: rightCenterGroupContent
                 anchors.fill: parent
+
+                ClockWidget {
+                    showDate: (Config.options.bar.verbose && root.useShortenedForm < 2)
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.fillWidth: true
+                }
 
                 UtilButtons {
                     visible: (Config.options.bar.verbose && root.useShortenedForm === 0)
