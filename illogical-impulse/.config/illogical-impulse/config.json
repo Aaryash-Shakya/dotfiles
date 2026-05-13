@@ -31,13 +31,13 @@
         },
         "palette": {
             "accentColor": "",
-            "type": "auto"
+            "type": "scheme-fruit-salad"
         },
         "transparency": {
             "automatic": true,
             "backgroundTransparency": 0.11,
             "contentTransparency": 0.57,
-            "enable": false
+            "enable": true
         },
         "wallpaperTheming": {
             "enableAppsAndShell": true,
@@ -80,7 +80,7 @@
             "workspaceZoom": 1.07
         },
         "thumbnailPath": "",
-        "wallpaperPath": "/home/aaryash/.config/quickshell/ii/assets/images/default_wallpaper.png",
+        "wallpaperPath": "/home/aaryash/Pictures/Wallpapers/uwp5004111.png",
         "widgets": {
             "clock": {
                 "cookie": {
@@ -116,7 +116,7 @@
                     "enable": true,
                     "text": "Nothing changes, if nothing changes"
                 },
-                "showOnlyWhenLocked": false,
+                "showOnlyWhenLocked": true,
                 "style": "cookie",
                 "styleLocked": "cookie",
                 "x": 905,
@@ -146,7 +146,7 @@
         "floatStyleShadow": true,
         "indicators": {
             "notifications": {
-                "showUnreadCount": false
+                "showUnreadCount": true
             }
         },
         "resources": {
@@ -160,7 +160,7 @@
         ],
         "showBackground": true,
         "tooltips": {
-            "clickToShow": true
+            "clickToShow": false
         },
         "topLeftIcon": "spark",
         "utilButtons": {
@@ -235,7 +235,7 @@
     },
     "conflictKiller": {
         "autoKillNotificationDaemons": false,
-        "autoKillTrays": false
+        "autoKillTrays": true
     },
     "crosshair": {
         "code": "0;P;d;1;0l;10;0o;2;1b;0"
@@ -247,7 +247,7 @@
         "hoverToReveal": true,
         "ignoredAppRegexes": [
         ],
-        "monochromeIcons": true,
+        "monochromeIcons": false,
         "pinnedApps": [
             "org.kde.dolphin",
             "kitty"
@@ -382,7 +382,7 @@
         "savePath": "/home/aaryash/Videos"
     },
     "screenSnip": {
-        "savePath": ""
+        "savePath": "/home/aaryash/Pictures/Screenshots"
     },
     "search": {
         "engineBaseUrl": "https://www.google.com/search?q=",
@@ -454,7 +454,7 @@
                         "type": "idleInhibitor"
                     },
                     {
-                        "size": 1,
+                        "size": 2,
                         "type": "mic"
                     },
                     {
@@ -462,8 +462,12 @@
                         "type": "audio"
                     },
                     {
-                        "size": 2,
+                        "size": 1,
                         "type": "nightLight"
+                    },
+                    {
+                        "size": 1,
+                        "type": "easyEffects"
                     }
                 ]
             },
@@ -482,7 +486,7 @@
     "time": {
         "dateFormat": "ddd, dd/MM",
         "dateWithYearFormat": "dd/MM/yyyy",
-        "format": "hh:mm",
+        "format": "h:mm AP",
         "pomodoro": {
             "breakTime": 300,
             "cyclesBeforeLongBreak": 4,
