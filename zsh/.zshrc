@@ -26,3 +26,15 @@ unsetopt CORRECT_ALL
 # alias
 alias code='code --disable-gpu --ozone-platform=x11'
 
+
+# opencode
+export PATH=/home/aaryash/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/home/aaryash/.bun/_bun" ] && source "/home/aaryash/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+alias claude-mem='bun "/home/aaryash/.claude/plugins/cache/thedotmack/claude-mem/10.6.0/scripts/worker-service.cjs"'
