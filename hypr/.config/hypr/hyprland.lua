@@ -18,9 +18,9 @@ require("custom/general")
 require("custom/rules")
 require("custom/keybinds")
 
--- nwg-displays support: re-add the files if it updates later
--- require("workspaces")
--- require("monitors")
+-- nwg-displays support: monitors.lua hand-maintained (nwg only writes .conf)
+-- require("workspaces") -- enable when nwg-displays generates workspaces.lua
+require("monitors")
 
 -- Shell overrides --
 require("hyprland/shellOverrides/main")
