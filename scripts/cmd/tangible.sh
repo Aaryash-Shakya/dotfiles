@@ -27,7 +27,7 @@ tmux send-keys -t tangible:2.1 "cd /home/aaryash/Documents/arbyte/tangible-front
 
 # Create third window named 'pgcli'
 # tmux new-window -t tangible:3 -n pgcli
-tmux send-keys -t tangible:3 "pgcli tangible" C-m
+# tmux send-keys -t tangible:3 "pgcli tangible" C-m
 
 # Attach to the session
 #tmux attach-session -t tangible
