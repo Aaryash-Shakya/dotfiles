@@ -10,11 +10,12 @@ import Quickshell.Hyprland
 
 /**
  * A service that provides access to Hyprland keybinds.
- * Uses the `get_keybinds.py` script to parse comments in config files in a certain format and convert to JSON.
+ * Uses `hyprctl binds -j` to fetch keybinds as JSON.
  */
 Singleton {
     id: root
     property var keybinds: []
+    property var keybindCategories: []
 
     Connections {
         target: Hyprland
@@ -35,6 +36,15 @@ Singleton {
             onStreamFinished: {
                 try {
                     root.keybinds = JSON.parse(text)
+                    var groups = []
+                    for (var i = 0; i < root.keybinds.length; i++) {
+                        var bind = root.keybinds[i].description
+                        var group = bind.substring(0, bind.indexOf(":"))
+                        if (!groups.includes(group) && group.length > 0) {
+                            groups.push(group)
+                        }
+                    }
+                    root.keybindCategories = groups
                 } catch (e) {
                     console.error("[CheatsheetKeybinds] Error parsing keybinds:", e)
                 }
