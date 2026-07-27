@@ -56,3 +56,103 @@ Root cause = two missing pieces required for NVIDIA to survive suspend:
   modprobe options on a normal boot.
 - These are system files (`/etc/...`), not tracked in this dotfiles repo — this
   doc is the record of the change.
+
+---
+
+# Part 2 — freeze recurred: unfrozen sessions race the VRAM save (2026-07-08)
+
+## Symptom
+
+Same lid-open freeze as Part 1, but **after** the Part 1 fix was confirmed
+still in place (services enabled, `PreserveVideoMemoryAllocations=1` live).
+Screen shows a stale frame, keyboard dead. Intermittent, not every suspend.
+
+## Diagnosis
+
+Different signature. `journalctl` at the freeze showed the errors firing at
+**suspend entry**, not resume:
+
+```
+systemd-sleep: User sessions remain unfrozen on explicit request ($SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=0).
+kernel: PM: suspend entry (deep)
+kernel: NVRM: nvCheckOkFailedNoLog: Check failed: Out of memory [NV_ERR_NO_MEMORY] (0x00000051) returned from _memdescAllocInternal(pMemDesc) @ mem_desc.c:1338
+kernel: [drm:__nv_drm_semsurf_wait_fence_work_cb [nvidia_drm]] *ERROR* ... Failed to register auto-value-update on pre-wait value for sync FD semaphore surface
+```
+
+Chain of causation:
+
+1. systemd normally **freezes all user processes** before suspending, so nothing
+   touches the GPU during suspend.
+2. The `nvidia-utils` package disables that — it ships
+   `/usr/lib/systemd/system/systemd-suspend.service.d/10-nvidia-no-freeze-session.conf`
+   setting `SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false` (NVIDIA added this to dodge
+   a *different* deadlock). Confirmed present on this system.
+3. So during the VRAM-save step of suspend (the Part 1 `PreserveVideoMemoryAllocations`
+   mechanism), Hyprland + quickshell are **still running and still submitting GPU
+   work**.
+4. That race makes a driver allocation fail (`NV_ERR_NO_MEMORY` in
+   `_memdescAllocInternal`).
+5. The failed alloc leaves an **invalid explicit-sync fence**
+   (`semsurf_wait_fence`). Hyprland waits on that fence forever on wake → frozen
+   frame, dead input.
+
+Confirmed as a known, widely-reported bug (not specific to this machine):
+
+- basecamp/omarchy#4891 — identical logs, Hyprland + hybrid NVIDIA laptops.
+- NVIDIA/open-gpu-kernel-modules#931 — NVIDIA's own explanation of the
+  unfrozen-session race.
+
+Ruled out:
+
+- **Driver downgrade** — reproduces on 580 / 595 / 610 branches; not a 610
+  regression.
+- **`render:explicit_sync = 0`** — option **removed** in Hyprland 0.55 (explicit
+  sync is now mandatory), so it can't be dodged compositor-side.
+
+## Fix
+
+A `systemd-sleep` hook that does manually, for just the two GPU-heavy processes,
+what NVIDIA's package disabled globally: pause them before suspend, resume them
+after wake.
+
+Install (source tracked in this repo at `docs/nvidia-freeze-gpu-clients`):
+
+```bash
+sudo install -Dm755 docs/nvidia-freeze-gpu-clients \
+  /etc/systemd/system-sleep/nvidia-freeze-gpu-clients
+```
+
+Script:
+
+```sh
+#!/bin/sh
+case "$1" in
+    pre)
+        pkill -STOP -x Hyprland
+        pkill -STOP -x 'quickshell|qs'
+        ;;
+    post)
+        pkill -CONT -x 'quickshell|qs'
+        pkill -CONT -x Hyprland
+        ;;
+esac
+```
+
+- quickshell's process name is **`qs`**, not `quickshell` — the `-x 'quickshell|qs'`
+  pattern covers both.
+- GPU sits idle during the VRAM save → no alloc race → valid fence → clean wake.
+
+## Recovery / rollback
+
+- **Revert:** `sudo rm /etc/systemd/system-sleep/nvidia-freeze-gpu-clients`
+- **If the `post` step ever fails** and apps stay paused: switch to a TTY
+  (`Ctrl+Alt+F3`) and `pkill -CONT -x Hyprland` — no reboot needed.
+
+## If it still recurs
+
+1. Re-enable full session freeze (overrides NVIDIA's drop-in), accepting the
+   deadlock risk NVIDIA warned about (Ubuntu bug 2158993):
+   `SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=true`.
+2. Boot `linux-cachyos-lts` (6.18) — kernel 7.x has separate NVIDIA s2idle
+   resume-hang reports (NVIDIA/open-gpu-kernel-modules#1117).
+3. Add more GPU clients to the `pkill` lists if some other process is racing.

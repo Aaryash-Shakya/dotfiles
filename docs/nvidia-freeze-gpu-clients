@@ -1,0 +1,21 @@
+#!/bin/sh
+# Pause GPU clients across suspend so they can't submit work while the
+# NVIDIA driver saves/restores VRAM (PreserveVideoMemoryAllocations=1).
+# Root cause: nvidia-utils ships SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false,
+# so Hyprland keeps rendering during suspend entry -> NV_ERR_NO_MEMORY in
+# _memdescAllocInternal -> broken semsurf fence -> frozen screen on wake.
+# See: docs/nvidia-suspend-freeze.md, github.com/basecamp/omarchy/issues/4891,
+#      NVIDIA/open-gpu-kernel-modules#931
+# Install: sudo install -Dm755 docs/nvidia-freeze-gpu-clients \
+#            /etc/systemd/system-sleep/nvidia-freeze-gpu-clients
+# ponytail: stops only Hyprland + quickshell(qs); add other heavy GPU clients if freeze recurs.
+case "$1" in
+    pre)
+        pkill -STOP -x Hyprland
+        pkill -STOP -x 'quickshell|qs'
+        ;;
+    post)
+        pkill -CONT -x 'quickshell|qs'
+        pkill -CONT -x Hyprland
+        ;;
+esac
