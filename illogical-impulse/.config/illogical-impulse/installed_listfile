@@ -351,6 +351,7 @@
 /home/aaryash/.config/quickshell/ii/modules/common/functions/levendist.js
 /home/aaryash/.config/quickshell/ii/modules/common/functions/Levendist.qml
 /home/aaryash/.config/quickshell/ii/modules/common/functions/NotificationUtils.qml
+/home/aaryash/.config/quickshell/ii/modules/common/functions/NumberUtils.qml
 /home/aaryash/.config/quickshell/ii/modules/common/functions/ObjectUtils.qml
 /home/aaryash/.config/quickshell/ii/modules/common/functions/Session.qml
 /home/aaryash/.config/quickshell/ii/modules/common/functions/StringUtils.qml
@@ -385,6 +386,7 @@
 /home/aaryash/.config/quickshell/ii/modules/common/models/quickToggles/PowerProfilesToggle.qml
 /home/aaryash/.config/quickshell/ii/modules/common/models/quickToggles/QuickToggleModel.qml
 /home/aaryash/.config/quickshell/ii/modules/common/models/quickToggles/ScreenSnipToggle.qml
+/home/aaryash/.config/quickshell/ii/modules/common/models/WorkspaceModel.qml
 /home/aaryash/.config/quickshell/ii/modules/common/panels/lock/LockContext.qml
 /home/aaryash/.config/quickshell/ii/modules/common/panels/lock/LockScreen.qml
 /home/aaryash/.config/quickshell/ii/modules/common/panels/lock/pam/fprintd.conf
@@ -395,13 +397,18 @@
 /home/aaryash/.config/quickshell/ii/modules/common/utils/TempScreenshotProcess.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/AddressBar.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/AddressBreadcrumb.qml
+/home/aaryash/.config/quickshell/ii/modules/common/widgets/AppIcon.qml
+/home/aaryash/.config/quickshell/ii/modules/common/widgets/BoxLayout.qml
+/home/aaryash/.config/quickshell/ii/modules/common/widgets/Box.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/ButtonGroup.qml
+/home/aaryash/.config/quickshell/ii/modules/common/widgets/ButtonMouseArea.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/CalendarView.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/Circle.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/CircularProgress.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/CliphistImage.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/ClippedFilledCircularProgress.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/ClippedProgressBar.qml
+/home/aaryash/.config/quickshell/ii/modules/common/widgets/Colorizer.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/ConfigRow.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/ConfigSelectionArray.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/ConfigSlider.qml
@@ -452,6 +459,7 @@
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/NotificationListView.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/OptionalMaterialSymbol.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/PagePlaceholder.qml
+/home/aaryash/.config/quickshell/ii/modules/common/widgets/Pill.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/PointingHandInteraction.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/PointingHandLinkHover.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/PopupToolTip.qml
@@ -487,6 +495,8 @@
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/shapes/shapes/utils.js
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/SineCookie.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/SqueezedAnnotationStyledText.qml
+/home/aaryash/.config/quickshell/ii/modules/common/widgets/StateLayer.qml
+/home/aaryash/.config/quickshell/ii/modules/common/widgets/StateOverlay.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledBlurEffect.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledComboBox.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledDropShadow.qml
@@ -496,6 +506,7 @@
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledListView.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledProgressBar.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledRadioButton.qml
+/home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledRectangle.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledRectangularShadow.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledScrollBar.qml
 /home/aaryash/.config/quickshell/ii/modules/common/widgets/StyledSlider.qml

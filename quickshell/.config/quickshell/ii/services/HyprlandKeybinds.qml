@@ -10,7 +10,7 @@ import Quickshell.Hyprland
 
 /**
  * A service that provides access to Hyprland keybinds.
- * Uses `hyprctl binds -j` to fetch keybinds as JSON.
+ * Uses the `get_keybinds.py` script to parse comments in config files in a certain format and convert to JSON.
  */
 Singleton {
     id: root
