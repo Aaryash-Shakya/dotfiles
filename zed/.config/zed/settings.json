@@ -35,7 +35,7 @@
   "git_panel": {
     "dock": "left"
   },
-  "diff_view_style": "unified",
+  "diff_view_style": "split",
   "edit_predictions": {
     "mode": "eager",
     "copilot": {
@@ -65,7 +65,27 @@
   },
   "restore_on_startup": "last_session", // Restore the last session on startup
   "confirm_quit": true,
-  "formatter": "prettier",
+  // "auto" keeps Zed's per-language defaults (rust-analyzer, gopls, ...).
+  // Prettier is opted into only for the languages it actually handles.
+  "formatter": "auto",
+  "languages": {
+    "JavaScript": { "formatter": "prettier" },
+    "TypeScript": { "formatter": "prettier" },
+    "TSX": { "formatter": "prettier" },
+    "JSON": { "formatter": "prettier" },
+    "JSONC": { "formatter": "prettier" },
+    "CSS": { "formatter": "prettier" },
+    "HTML": { "formatter": "prettier" },
+    "YAML": { "formatter": "prettier" },
+    "Markdown": { "formatter": "prettier" },
+  },
+  "inlay_hints": {
+    "enabled": true,
+  },
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false,
+  },
   "indent_guides": {
     "enabled": true,
     "coloring": "indent_aware",
