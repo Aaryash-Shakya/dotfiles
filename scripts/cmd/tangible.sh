@@ -3,8 +3,8 @@
 # Open Zed for frontend on workspace 2
 # zed ~/Documents/arbyte/tangible-frontend &
 
-# Open VS Code for backend on workspace 2
-zeditor ~/Documents/arbyte/tangible-backend &
+# Open Zed for backend on workspace 2 in background (don't switch there)
+hyprctl dispatch "hl.dsp.exec_cmd(\"zeditor $HOME/Documents/arbyte/tangible-backend\", { workspace = \"2 silent\" })"
 
 # Start a new tmux session named 'tangible'
 tmux new-session -d -s tangible
