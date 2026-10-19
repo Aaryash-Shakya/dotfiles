@@ -4,18 +4,24 @@
 # Root cause: nvidia-utils ships SYSTEMD_SLEEP_FREEZE_USER_SESSIONS=false,
 # so Hyprland keeps rendering during suspend entry -> NV_ERR_NO_MEMORY in
 # _memdescAllocInternal -> broken semsurf fence -> frozen screen on wake.
-# See: docs/nvidia-suspend-freeze.md, github.com/basecamp/omarchy/issues/4891,
+# See: README.md, github.com/basecamp/omarchy/issues/4891,
 #      NVIDIA/open-gpu-kernel-modules#931
-# Install: sudo install -Dm755 docs/nvidia-freeze-gpu-clients \
+# Install: sudo install -Dm755 system-fixes/nvidia-suspend-freeze/nvidia-freeze-gpu-clients \
 #            /etc/systemd/system-sleep/nvidia-freeze-gpu-clients
 # ponytail: stops only Hyprland + quickshell(qs); add other heavy GPU clients if freeze recurs.
+# Logs to the journal (journalctl -t gpu-freeze) with Hyprland's process state
+# (T = stopped, S/R = running) so a post-resume hang can be diagnosed.
+state() { logger -t gpu-freeze "$1: Hyprland=$(ps -o stat= -C Hyprland | tr -d ' \n') qs=$(ps -o stat= -C quickshell,qs | tr -d ' \n')"; }
 case "$1" in
     pre)
         pkill -STOP -x Hyprland
         pkill -STOP -x 'quickshell|qs'
+        state pre
         ;;
     post)
         pkill -CONT -x 'quickshell|qs'
         pkill -CONT -x Hyprland
+        state post
+        sleep 2; state post+2s
         ;;
 esac

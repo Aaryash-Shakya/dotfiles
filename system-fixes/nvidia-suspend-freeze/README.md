@@ -115,10 +115,10 @@ A `systemd-sleep` hook that does manually, for just the two GPU-heavy processes,
 what NVIDIA's package disabled globally: pause them before suspend, resume them
 after wake.
 
-Install (source tracked in this repo at `docs/nvidia-freeze-gpu-clients`):
+Install (source tracked in this repo at `system-fixes/nvidia-suspend-freeze/nvidia-freeze-gpu-clients`):
 
 ```bash
-sudo install -Dm755 docs/nvidia-freeze-gpu-clients \
+sudo install -Dm755 system-fixes/nvidia-suspend-freeze/nvidia-freeze-gpu-clients \
   /etc/systemd/system-sleep/nvidia-freeze-gpu-clients
 ```
 
@@ -156,3 +156,11 @@ esac
 2. Boot `linux-cachyos-lts` (6.18) — kernel 7.x has separate NVIDIA s2idle
    resume-hang reports (NVIDIA/open-gpu-kernel-modules#1117).
 3. Add more GPU clients to the `pkill` lists if some other process is racing.
+
+## Recurrence log
+
+- **2026-10-19:** screen froze after a resume despite the hook; hard reset needed.
+  Kernel log clean (no Xid/hung-task), Hyprland silent after first wake and ignored
+  SIGTERM at shutdown. The hook now logs process state: after the next freeze run
+  `journalctl -b -1 -t gpu-freeze`. `T` at `post+2s` = SIGCONT didn't land;
+  `S` = Hyprland running but hung for another reason.
