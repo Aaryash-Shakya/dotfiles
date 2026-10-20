@@ -458,7 +458,7 @@
                         "type": "idleInhibitor"
                     },
                     {
-                        "size": 2,
+                        "size": 1,
                         "type": "mic"
                     },
                     {
@@ -467,11 +467,11 @@
                     },
                     {
                         "size": 1,
-                        "type": "nightLight"
+                        "type": "musicRecognition"
                     },
                     {
                         "size": 1,
-                        "type": "easyEffects"
+                        "type": "powerProfile"
                     }
                 ]
             },
