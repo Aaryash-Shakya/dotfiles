@@ -59,6 +59,24 @@ Singleton {
         }
     }
 
+    // ccstatusline only rewrites the cache when Claude Code's stdin lacks rate_limits,
+    // so poke it with an empty status JSON to force a fetch (its own 180s cache and
+    // rate-limit lock still apply).
+    Timer {
+        interval: 5 * 60 * 1000
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: if (!refreshProc.running) refreshProc.running = true
+    }
+
+    Process {
+        id: refreshProc
+        // the bar's environment may not have nvm's node on PATH
+        command: ["bash", "-c", "source ~/.nvm/nvm.sh >/dev/null 2>&1; echo '{}' | ccstatusline >/dev/null 2>&1"]
+        onExited: usageFile.reload()
+    }
+
     FileView {
         id: usageFile
         path: Quickshell.env("HOME") + "/.cache/ccstatusline/usage.json"
