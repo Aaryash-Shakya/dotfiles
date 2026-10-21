@@ -88,6 +88,14 @@ Item { // Bar content region
                 Layout.leftMargin: Appearance.rounding.screenRounding
                 colBackground: barLeftSideMouseArea.hovered ? Appearance.colors.colLayer1Hover : ColorUtils.transparentize(Appearance.colors.colLayer1Hover, 1)
             }
+
+            ClaudeUsageIndicator {
+                Layout.alignment: Qt.AlignVCenter
+                Layout.leftMargin: 8
+                visible: root.useShortenedForm === 0 && ClaudeUsage.available
+            }
+
+            Item { Layout.fillWidth: true } // push the items above to the left
         }
     }
 
